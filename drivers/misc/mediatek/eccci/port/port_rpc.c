@@ -383,7 +383,7 @@ static void get_md_dtsi_val(struct ccci_rpc_md_dtsi_input *input,
 	case RPC_REQ_PROP_VALUE:
 		ret = of_property_read_u32(node, input->strName, &value);
 		if (ret == 0)
-			output->retValue = value;
+			output->retValue = !strcmp(input->strName, "mediatek,md_drdi_rf_set_idx") ? 0 : value;
 		break;
 	}
 	CCCI_INIT_LOG(-1, RPC, "%s %d, %s -- 0x%x\n", __func__,
